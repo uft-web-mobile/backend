@@ -1,0 +1,31 @@
+# Arquivos e diretórios específicos do Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+# Arquivos de configuração
+db.sqlite3
+.env
+
+# Dependências e pacotes
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.env
+env/
+venv/
+*.venv
+env.bak/
+venv.bak/
+*.egg-info/
+dist/
+build/
+
+# Arquivos temporários
+*.swp
+*.swo
+*~
+.DS_Store
