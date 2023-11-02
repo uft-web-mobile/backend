@@ -23,9 +23,9 @@ RUN python -m venv /venv && \
   /venv/bin/pip install -r /djangoapp/requirements.txt && \
   adduser --disabled-password --no-create-home duser && \
   chown -R duser:duser /venv && \
-  chown -R duser:duser /djangoapp && \
-  chmod -R +x /scripts && \
-  chmod -R 755 /djangoapp
+  chmod -R +x /scripts
+
+
 
 ENV PATH="/scripts:/venv/bin:$PATH"
 
