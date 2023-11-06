@@ -8,6 +8,7 @@ local_settings.py
 # Arquivos de configuração
 db.sqlite3
 .env
+.idea
 
 # Dependências e pacotes
 *.pyc
