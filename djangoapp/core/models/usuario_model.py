@@ -3,7 +3,7 @@ from django.db import models
 
 class Usuario(models.Model):
     email = models.EmailField(unique=True, verbose_name="Email", null=False)
-    username = models.CharField(unique=True, verbose_name="Email", null=False)
+    username = models.CharField(unique=True, verbose_name="Username", null=False)
     primeiro_nome = models.CharField(max_length=30, verbose_name="Primeiro Nome", null=False)
     segundo_nome = models.CharField(max_length=30, verbose_name="Segundo Nome", null=False)
     data_nascimento = models.DateField(verbose_name="Data de Nascimento", null=False)

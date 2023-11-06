@@ -21,7 +21,7 @@ class UsuarioView(View):
         data = json.loads(request.body)
         
         # Verificar se todos os campos obrigatórios estão presentes
-        required_fields = ['email', 'senha', 'primeiro_nome', 'segundo_nome', 'data_nascimento', 'e_admin']
+        required_fields = ['email', 'username', 'senha', 'primeiro_nome', 'segundo_nome', 'data_nascimento']
         for field in required_fields:
             if field not in data or not data[field]:
                 return JsonResponse({'error': f'O campo {field} é obrigatório'}, status=400)
@@ -37,11 +37,11 @@ class UsuarioView(View):
         
         usuario = Usuario(
             email=data['email'],
+            username=data['username'],
             primeiro_nome=data['primeiro_nome'],
             segundo_nome=data['segundo_nome'],
             data_nascimento=data['data_nascimento'],
-            senha=senha_criptografada,
-            e_admin=data['e_admin']
+            senha=senha_criptografada
         )
         usuario.save()
         
@@ -66,7 +66,7 @@ class UsuarioView(View):
         data = json.loads(request.body)
 
         # Verificar se todos os campos obrigatórios estão presentes
-        required_fields = ['email', 'primeiro_nome', 'segundo_nome', 'data_nascimento', 'e_admin']
+        required_fields = ['email', 'username', 'senha', 'primeiro_nome', 'segundo_nome', 'data_nascimento']
         for field in required_fields:
             if field not in data or not data[field]:
                 return JsonResponse({'error': f'O campo {field} é obrigatório'}, status=400)
@@ -76,6 +76,7 @@ class UsuarioView(View):
 
         # Atualizar os campos do usuário
         usuario.email = data['email']
+        usuario.username = data['username']
         usuario.primeiro_nome = data['primeiro_nome']
         usuario.segundo_nome = data['segundo_nome']
         usuario.data_nascimento = data['data_nascimento']
@@ -85,7 +86,6 @@ class UsuarioView(View):
             senha_criptografada = make_password(data['senha'])
             usuario.senha = senha_criptografada
 
-        usuario.e_admin = data['e_admin']
         usuario.atualizado_em = datetime.now()
         usuario.save()
 
