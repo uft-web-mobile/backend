@@ -25,7 +25,8 @@ RUN python -m venv /venv && \
   chown -R duser:duser /venv && \
   chown -R duser:duser /djangoapp && \
   chmod -R +x /scripts && \
-  chmod -R 755 /djangoapp
+  chmod -R 755 /djangoapp && \
+  chown -R duser:duser /djangoapp/core/migrations
 
 ENV PATH="/scripts:/venv/bin:$PATH"
 
