@@ -23,9 +23,10 @@ RUN python -m venv /venv && \
   /venv/bin/pip install -r /djangoapp/requirements.txt && \
   adduser --disabled-password --no-create-home duser && \
   chown -R duser:duser /venv && \
-  chmod -R +x /scripts
-
-
+  chown -R duser:duser /djangoapp && \
+  chmod -R +x /scripts && \
+  chmod -R 755 /djangoapp && \
+  chown -R duser:duser /djangoapp/core/migrations
 
 ENV PATH="/scripts:/venv/bin:$PATH"
 
