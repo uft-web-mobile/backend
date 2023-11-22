@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Usuario, Desafio, Resultado
+from .models import Usuario, Desafio, Resultado, UserDesafio
 
 @admin.register(Usuario)
 class UsuarioAdmin(admin.ModelAdmin):
@@ -14,7 +14,12 @@ class DesafioAdmin(admin.ModelAdmin):
     
 @admin.register(Resultado)
 class ResultadoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'entrada', 'saida', 'visivel')
+    list_display = ('desafio', 'entrada', 'saida', 'visivel')
     
-    def name(self, obj):
-        return 'teste'
+    def desafio(self, obj):
+        return obj.desafio
+    
+@admin.register(UserDesafio)
+class UserDesafioAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'desafios')
+    

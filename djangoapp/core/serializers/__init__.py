@@ -2,3 +2,6 @@ from core.serializers.usuario_serialize import UsuarioSerializer
 from core.serializers.DesafiosSerializers import DesafioSerializer
 from core.serializers.ResultadosSerializers import ResultadosSerializers
 from core.serializers.DesafiosCreateSerializers import DesafioCreateSerializer
+from core.serializers.DesafioUpdateSerializers import DesafioUpdateSerializer
+from core.serializers.ResultadoCreateSerializers import ResultadoCreateSerializer
+from core.serializers.ResultadoUpdateSerializers import ResultadoCreateSerializer
