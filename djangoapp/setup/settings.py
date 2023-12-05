@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from doctest import Example
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -29,13 +30,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'INSECURE')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.getenv('DEBUG', 0)))
-#DEBUG = True
-
-ALLOWED_HOSTS = [
-    h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',')
-    if h.strip()
-]
-
+DEBUG = True
+ALLOWED_HOSTS = ['localhost', '127.0.0.1:8000', '127.0.0.1']  # Uma lista com um único host
 
 # Application definition
 
@@ -92,11 +88,11 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_NAME'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('POSTGRES_HOST'),
-        'PORT': os.getenv('POSTGRES_PORT'),
+        'NAME': ('teste'),
+        'USER': ('postgres'),
+        'PASSWORD':('1234'),
+        'HOST': ('localhost'),
+        'PORT': ('5432'),
     }
 }
 
