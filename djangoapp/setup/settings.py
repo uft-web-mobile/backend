@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from doctest import Example
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -29,12 +30,12 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'INSECURE')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.getenv('DEBUG', 0)))
-
+#DEBUG = True
+ALLOWED_HOSTS = ['localhost', '127.0.0.1:8000', '127.0.0.1']  # Uma lista com um único host
 ALLOWED_HOSTS = [
     h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',')
     if h.strip()
 ]
-
 
 # Application definition
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'core',
     
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'django_filters',
     
@@ -58,7 +60,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+   # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -98,7 +101,6 @@ DATABASES = {
         'PORT': os.getenv('POSTGRES_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -171,3 +173,10 @@ LOGGING = {
         },
     }
 }
+
+AUTH_USER_MODEL = 'core.Usuario'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:5173",# Substitua pelo domínio de origem do seu aplicativo React
+]
