@@ -21,7 +21,7 @@ class UsuarioView(View):
         data = json.loads(request.body)
         
         # Verificar se todos os campos obrigatórios estão presentes
-        required_fields = ['email', 'username', 'senha', 'primeiro_nome', 'segundo_nome', 'data_nascimento']
+        required_fields = ['email', 'username', 'password', 'primeiro_nome', 'segundo_nome', 'data_nascimento']
         for field in required_fields:
             if field not in data or not data[field]:
                 return JsonResponse({'error': f'O campo {field} é obrigatório'}, status=400)
@@ -33,7 +33,7 @@ class UsuarioView(View):
         except ObjectDoesNotExist:
             pass  # Continue se o usuário não existir
         
-        senha_criptografada = make_password(data['senha'])
+        password_criptografada = make_password(data['password'])
         
         usuario = Usuario(
             email=data['email'],
@@ -41,7 +41,7 @@ class UsuarioView(View):
             primeiro_nome=data['primeiro_nome'],
             segundo_nome=data['segundo_nome'],
             data_nascimento=data['data_nascimento'],
-            senha=senha_criptografada
+            password=password_criptografada
         )
         usuario.save()
         
@@ -66,7 +66,7 @@ class UsuarioView(View):
         data = json.loads(request.body)
 
         # Verificar se todos os campos obrigatórios estão presentes
-        required_fields = ['email', 'username', 'senha', 'primeiro_nome', 'segundo_nome', 'data_nascimento']
+        required_fields = ['email', 'username', 'password', 'primeiro_nome', 'segundo_nome', 'data_nascimento']
         for field in required_fields:
             if field not in data or not data[field]:
                 return JsonResponse({'error': f'O campo {field} é obrigatório'}, status=400)
@@ -81,10 +81,10 @@ class UsuarioView(View):
         usuario.segundo_nome = data['segundo_nome']
         usuario.data_nascimento = data['data_nascimento']
 
-        # Verificar e atualizar a senha, se presente nos dados
-        if 'senha' in data:
-            senha_criptografada = make_password(data['senha'])
-            usuario.senha = senha_criptografada
+        # Verificar e atualizar a password, se presente nos dados
+        if 'password' in data:
+            password_criptografada = make_password(data['password'])
+            usuario.password = password_criptografada
 
         usuario.atualizado_em = datetime.now()
         usuario.save()

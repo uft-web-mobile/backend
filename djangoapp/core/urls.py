@@ -1,7 +1,7 @@
 from django.urls import path
 from .views.usuario_view import UsuarioView
 from .views.compilador_view import ExecuteCodeView
-from .views.login_view import LoginAPI, LoginAPIView
+from .views.login_view import LoginAPI
 
 urlpatterns = [
     path('usuarios/', UsuarioView.as_view(), name='usuario_list'),

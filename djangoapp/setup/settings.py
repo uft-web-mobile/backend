@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'core',
     
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'django_filters',
     
@@ -171,3 +172,5 @@ LOGGING = {
         },
     }
 }
+
+AUTH_USER_MODEL = 'core.Usuario'
